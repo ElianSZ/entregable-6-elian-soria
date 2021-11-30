@@ -19,7 +19,7 @@ public class MoveLateral : MonoBehaviour
         // Estamos accediendo a las variables del script PlayerController, en concreto, a la variable GameOver
         if (!playerControllerScript.gameOver)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
 
         if (transform.position.x > 15)
