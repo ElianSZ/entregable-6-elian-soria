@@ -8,7 +8,6 @@ public class SpawnManager : MonoBehaviour
     private float repeatRate = 1.4f;
     private Vector3 randomPos;
     private float spawnPos;
-    // private Vector3 spawnPosL;
     private float randomHeight;
     private float limY = 14f;
     private PlayerController playerControllerScript;
@@ -47,32 +46,6 @@ public class SpawnManager : MonoBehaviour
                 randomPos = new Vector3(13, randomHeight, 0);
                 Instantiate(obstaclePrefabs[0], randomPos, obstaclePrefabs[0].transform.rotation);
             }
-
-           
-            
-            // spawnPosR = new Vector3(-15, randomHeight, 0);
-
-            // obstaclePrefabs.Length = indica la longitud máxima de prefabs que he puesto en SpawnManager
-            
-            
-            // Instantiate(obstaclePrefabs[randomIndex], spawnPosR, obstaclePrefabs[randomIndex].transform.rotation);
-            
         }
     }
 }
-
-
-/*
-n = Random.Range(0,2);
-if (n == 0)
-{
-    n = -1
-}
-
-
-spawnPos = Random.Range(0,2);
-if (spawnPos == 0)
-{
-    spawnPos = -1
-}
-*/

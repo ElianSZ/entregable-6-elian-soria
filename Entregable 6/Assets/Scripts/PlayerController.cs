@@ -37,8 +37,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y > yRange)
         {
-            transform.position = new Vector3(transform.position.x, yRange,
-                transform.position.z);
+            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
         }
 
         if (transform.position.y < lowerLim)
@@ -54,19 +53,21 @@ public class PlayerController : MonoBehaviour
         // Si no estamos muertos, ejecuta todo
         if (!gameOver)
         {
+            transform.Translate(Vector3.up * jumpForce * Time.deltaTime);
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+            // Bloquea la posición y rotación del objeto
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
             Instantiate(explosionParticleSystem, transform.position, explosionParticleSystem.transform.rotation);       // Instancia el efecto de explosión
             playerAudioSource.PlayOneShot(ExplosionClip, 1f);                                                           // Ejecuta una vez el audio de explosión
 
             cameraAudioSource.volume = 0.1f;                                                                            // Baja el volumen de la música
 
-            Destroy(gameObject);
-
             // Comunica que hemos muerto
             gameOver = true;
             Debug.Log(message: "GAME OVER");
-            /*
-            Time.timeScale = 0;
-            */
         }
     }
 }
